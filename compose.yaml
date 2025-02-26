@@ -7,7 +7,7 @@ services:
       MERCURE_PUBLISHER_JWT_KEY: ${CADDY_MERCURE_JWT_SECRET:-!ChangeThisMercureHubJWTSecretKey!}
       MERCURE_SUBSCRIBER_JWT_KEY: ${CADDY_MERCURE_JWT_SECRET:-!ChangeThisMercureHubJWTSecretKey!}
       # Run "composer require symfony/orm-pack" to install and configure Doctrine ORM
-      DATABASE_URL: postgresql://${POSTGRES_USER:-app}:${POSTGRES_PASSWORD:-!ChangeMe!}@database:5432/${POSTGRES_DB:-app}?serverVersion=${POSTGRES_VERSION:-15}&charset=${POSTGRES_CHARSET:-utf8}
+      DATABASE_URL: mysql://${MARIADB_USER:-app}:${MARIADB_PASSWORD:-!ChangeMe!}@database:3306/${MARIADB_DATABASE:-app}?serverVersion=${MARIADB_VERSION:-10.11}&charset=${MARIADB_CHARSET:-utf8mb4}
       # Run "composer require symfony/mercure-bundle" to install and configure the Mercure integration
       MERCURE_URL: ${CADDY_MERCURE_URL:-http://php/.well-known/mercure}
       MERCURE_PUBLIC_URL: ${CADDY_MERCURE_PUBLIC_URL:-https://${SERVER_NAME:-localhost}:${HTTPS_PORT:-443}/.well-known/mercure}
@@ -36,8 +36,41 @@ services:
 ###> symfony/mercure-bundle ###
 ###< symfony/mercure-bundle ###
 
+###> doctrine/doctrine-bundle ###
+  database:
+    image: mariadb:${MARIADB_VERSION:-latest}
+    environment:
+      MARIADB_DATABASE: ${MARIADB_DATABASE:-app}
+      # You should definitely change the password in production
+      MARIADB_PASSWORD: ${MARIADB_PASSWORD:-!ChangeMe!}
+      MARIADB_USER: ${MARIADB_USER:-app}
+      MARIADB_ROOT_PASSWORD: ${MARIADB_ROOT_PASSWORD:-!RootChangeMe!}
+    healthcheck:
+      test: ["CMD", "mysqladmin", "ping", "-h", "localhost"]
+      timeout: 5s
+      retries: 5
+      start_period: 60s
+    volumes:
+      - database_data:/var/lib/mysql:rw
+      # You may use a bind-mounted host directory instead, so that it is harder to accidentally remove the volume and lose all your data!
+      # - ./docker/db/data:/var/lib/mysql:rw
+###< doctrine/doctrine-bundle ###
+  phpmyadmin:
+      image: phpmyadmin/phpmyadmin
+      container_name: phpmyadmin
+      restart: always
+      environment:
+        PMA_HOST: database
+        MYSQL_ROOT_PASSWORD: root_password
+      ports:
+        - "8081:80"
+
 volumes:
   caddy_data:
   caddy_config:
 ###> symfony/mercure-bundle ###
 ###< symfony/mercure-bundle ###
+
+###> doctrine/doctrine-bundle ###
+  database_data:
+###< doctrine/doctrine-bundle ###
