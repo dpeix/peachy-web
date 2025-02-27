@@ -1,0 +1,30 @@
+{% extends 'log.html.twig' %}
+
+{% block body %}
+<div class="container d-flex justify-content-center align-items-center vh-100">
+    <div class="card login-card">
+        <div class="card-body">
+            <h3 class="text-center">Login</h3>
+            <form method="post">
+                <div class="mb-3">
+                    <label for="username" class="form-label">Username</label>
+                    <input type="text" name="_username" class="form-control" id="username" placeholder="Enter your Username" required>
+                </div>
+                <div class="mb-3">
+                    <label for="password" class="form-label">Password</label>
+                    <input type="password" name="_password" class="form-control" id="password" placeholder="Enter your Password" required>
+                </div>
+                <input type="hidden" name="_csrf_token"
+                    value="{{ csrf_token('authenticate') }}"
+                >
+                <div class="d-grid">
+                    <button type="submit" class="btn btn-dark">Sign In</button>
+                </div>
+            </form>
+            <div class="text-center mt-3">
+                <a href="{{ path('app_register') }}">Create an account</a> &bull; <a href="#">Forgot password?</a>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}

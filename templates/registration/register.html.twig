@@ -1,0 +1,41 @@
+{% extends 'log.html.twig' %}
+
+{% block stylesheets %}
+    <link rel="stylesheet" href="{{ asset('assets/css/style.css') }}">
+{% endblock %}
+
+{% block title %}Sign Up!{% endblock %}
+
+{% block body %}
+<div class="container d-flex justify-content-center align-items-center vh-100">
+    <div class="card login-card">
+        <div class="card-body">
+            <h3 class="text-center">Sign Up</h3>
+            {{ form_start(registrationForm) }}
+                <div class="mb-3">
+                    {{ form_label(registrationForm.username, 'Username', {'label_attr': {'class': 'form-label'}}) }}
+                    {{ form_widget(registrationForm.username, {'attr': {'class': 'form-control', 'placeholder': 'Enter your Username'}}) }}
+                </div>
+                <div class="mb-3">
+                    {{ form_label(registrationForm.email, 'Email', {'label_attr': {'class': 'form-label'}}) }}
+                    {{ form_widget(registrationForm.email, {'attr': {'class': 'form-control', 'placeholder': 'Enter your Email'}}) }}
+                </div>
+                <div class="mb-3">
+                    {{ form_label(registrationForm.plainPassword.first, 'Password', {'label_attr': {'class': 'form-label'}}) }}
+                    {{ form_widget(registrationForm.plainPassword.first, {'attr': {'class': 'form-control', 'placeholder': 'Enter your Password'}}) }}
+                </div>
+                <div class="mb-3">
+                    {{ form_label(registrationForm.plainPassword.second, 'Confirm Password', {'label_attr': {'class': 'form-label'}}) }}
+                    {{ form_widget(registrationForm.plainPassword.second, {'attr': {'class': 'form-control', 'placeholder': 'Confirm your Password'}}) }}
+                </div>
+                <div class="d-grid">
+                    <button type="submit" class="btn btn-dark">Sign Up</button>
+                </div>
+            {{ form_end(registrationForm) }}
+            <div class="text-center mt-3">
+                <a href="{{ path('app_login') }}">Already have an account? Log in</a>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}

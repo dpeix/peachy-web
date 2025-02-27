@@ -38,7 +38,7 @@ services:
 
 ###> doctrine/doctrine-bundle ###
   database:
-    image: mariadb:${MARIADB_VERSION:-latest}
+    image: mariadb:${MARIADB_VERSION:-10.11}
     environment:
       MARIADB_DATABASE: ${MARIADB_DATABASE:-app}
       # You should definitely change the password in production
