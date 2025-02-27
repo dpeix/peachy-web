@@ -5,6 +5,11 @@
     <div class="card login-card">
         <div class="card-body">
             <h3 class="text-center">Login</h3>
+            {% if error %}
+                <div class="alert alert-danger" role="alert">
+                    Incorrect Username or Password
+                </div>
+            {% endif %}
             <form method="post">
                 <div class="mb-3">
                     <label for="username" class="form-label">Username</label>

@@ -19,37 +19,37 @@ class RegistrationFormType extends AbstractType
     {
         $builder
             ->add('username', TextType::class, [
-                'label' => 'Nom d’utilisateur',
+                'label' => 'Username',
                 'required' => true,
                 'constraints' => [
-                    new Assert\NotBlank(['message' => 'Veuillez entrer un nom d’utilisateur.']),
+                    new Assert\NotBlank(['message' => 'Please enter a username.']),
                     new Assert\Length([
                         'min' => 3,
-                        'minMessage' => 'Votre nom d’utilisateur doit contenir au moins {{ limit }} caractères.',
+                        'minMessage' => 'Your username must be at least {{ limit }} characters long.',
                         'max' => 50,
                     ]),
                 ],
             ])
             ->add('email', EmailType::class, [
-                'label' => 'Adresse e-mail',
+                'label' => 'Email address',
                 'required' => true,
                 'constraints' => [
-                    new Assert\NotBlank(['message' => 'Veuillez entrer une adresse e-mail.']),
-                    new Assert\Email(['message' => 'L’adresse e-mail n’est pas valide.']),
+                    new Assert\NotBlank(['message' => 'Please enter an email address.']),
+                    new Assert\Email(['message' => 'The email address is not valid.']),
                 ],
             ])
             ->add('plainPassword', RepeatedType::class, [
                 'type' => PasswordType::class,
-                'first_options' => ['label' => 'Mot de passe'],
-                'second_options' => ['label' => 'Confirmer le mot de passe'],
-                'invalid_message' => 'Les mots de passe doivent correspondre.',
+                'first_options' => ['label' => 'Password'],
+                'second_options' => ['label' => 'Confirm password'],
+                'invalid_message' => 'The passwords must match.',
                 'mapped' => false,
                 'required' => true,
                 'constraints' => [
-                    new Assert\NotBlank(['message' => 'Veuillez entrer un mot de passe.']),
+                    new Assert\NotBlank(['message' => 'Please enter a password.']),
                     new Assert\Length([
                         'min' => 6,
-                        'minMessage' => 'Votre mot de passe doit contenir au moins {{ limit }} caractères.',
+                        'minMessage' => 'Your password must be at least {{ limit }} characters long.',
                         'max' => 4096,
                     ]),
                 ],

@@ -23,21 +23,28 @@ class RegistrationController extends AbstractController
         $form = $this->createForm(RegistrationFormType::class, $user);
         $form->handleRequest($request);
 
-        if ($form->isSubmitted() && $form->isValid()) {
-            $hashedPassword = $passwordHasher->hashPassword(
-                $user,
-                $form->get('plainPassword')->getData()
-            );
-            $user->setPassword($hashedPassword);
+        if ($form->isSubmitted()) {
+            if ($form->isValid()) {
+                // Check if username already exists
+                $existingUser = $entityManager->getRepository(User::class)->findOneBy(['username' => $user->getUsername()]);
+                if ($existingUser) {
+                    $this->addFlash('error', 'Username already in use');
+                    return $this->render('registration/register.html.twig', [
+                        'registrationForm' => $form->createView(),
+                    ]);
+                }
+                
+                $user->setState(true);
 
-            $user->setRoles(['ROLE_USER']);
-            $user->setCreatedAt(new \DateTimeImmutable());
-            $user->setState(true);
+                $entityManager->persist($user);
+                $entityManager->flush();
 
-            $entityManager->persist($user);
-            $entityManager->flush();
-
-            return $this->redirectToRoute('app_home');
+                return $this->redirectToRoute('app_home');
+            } else {
+                foreach ($form->getErrors(true) as $error) {
+                    $this->addFlash('error', $error->getMessage());
+                }
+            }
         }
 
         return $this->render('registration/register.html.twig', [
