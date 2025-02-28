@@ -1,0 +1,76 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Home Page{% endblock %}
+
+{% block body %}
+<div class="container">
+    <aside class="sidebar">
+        <div class="sidebarOption" onclick="window.location.href='{{ path('app_login') }}';" style="cursor:pointer;">
+            <span class="material-icons">home</span>
+            <h2>Home</h2>
+        </div>
+
+        <div class="sidebarOption">
+            <span class="material-icons"> search </span>
+            <h2>Explore</h2>
+        </div>
+
+        <div class="sidebarOption">
+            <span class="material-icons"> notifications_none </span>
+            <h2>Notifications</h2>
+        </div>
+
+        <div class="sidebarOption" onclick="window.location.href='{{ path('app_login') }}';">
+            <span class="material-icons"> mail_outline </span>
+            <h2>Messages</h2>
+        </div>
+
+        <div class="sidebarOption">
+            <span class="material-icons"> bookmark_border </span>
+            <h2>Bookmarks</h2>
+        </div>
+
+        <div class="sidebarOption">
+            <span class="material-icons"> list_alt </span>
+            <h2>Lists</h2>
+        </div>
+
+        <div class="sidebarOption" onclick="window.location.href='{{ path('app_login') }}';" style="cursor:pointer;">
+            <span class="material-icons"> perm_identity </span>
+            <h2>Profile</h2>
+        </div>
+
+        <div class="sidebarOption">
+            <span class="material-icons"> more_horiz </span>
+            <h2>More</h2>
+        </div>
+        {#<button class="sidebar__tweet">Tweet</button>#}
+    </aside>
+        
+    <main class="feed">
+        <header class="feed-header">
+            <div class="header-container">
+                <nav>
+                    {% if not app.user %}
+                        <a href="{{ path('app_login') }}" class="btn">Login</a>
+                    {% else %}
+                        <a href="{{ path('app_logout') }}" class="btn">Logout</a>
+                    {% endif %}
+                </nav>
+            </div>
+        </header>
+        <div class="post-form">
+            <textarea placeholder="Exprimez-vous..."></textarea>
+            <button>Publier</button>
+        </div>
+        <div class="post">
+            <h3>Utilisateur 1</h3>
+            <p>Ceci est un premier post sur le réseau social.</p>
+        </div>
+        <div class="post">
+            <h3>Utilisateur 2</h3>
+            <p>Un autre post intéressant !</p>
+        </div>
+    </main>
+</div>
+{% endblock %}
