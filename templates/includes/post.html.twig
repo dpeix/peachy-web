@@ -1,0 +1,7 @@
+<div class="post">
+    <div class="post-header">
+        <h3><strong>{{ post.user.username }}</strong></h3>
+        <span class="post-date">{{ post.createdAt|date('d M Y', "Europe/Paris") }}</span>
+    </div>
+    <p>{{ post.body }}</p>
+</div>
