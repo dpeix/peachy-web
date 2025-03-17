@@ -7,7 +7,7 @@
         <button type="submit" {% if not app.user %}onclick="window.location.href='{{ path('app_login') }}'; return false;"{% endif %}>Publier</button>
         {{ form_end(form) }}
     </div>
-    {% for post in tweets %}
+    {% for post in posts %}
         {{ include('includes/post.html.twig') }}
     {% endfor %}
 {% endblock %}

@@ -48,11 +48,11 @@ final class HomeController extends AbstractController
         }
 
         // Récupérer tous les tweets de la base
-        $posts = $postRepository->findAllOrderedByDate();
+        $posts = $postRepository->findAllOrderedByDateDesc();
 
         // Rendre la vue avec les tweets et le formulaire
         return $this->render('home/index.html.twig', [
-            'tweets' => $posts,
+            'posts' => $posts,
             'form' => $form->createView(),
         ]);
     }

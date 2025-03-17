@@ -24,6 +24,14 @@ class PostRepository extends ServiceEntityRepository
             ->getResult();
     }
 
+    public function findAllOrderedByDateDesc(): array
+    {
+        return $this->createQueryBuilder('p')
+            ->orderBy('p.createdAt', 'DESC')
+            ->getQuery()
+            ->getResult();
+    }
+
     //    /**
     //     * @return Post[] Returns an array of Post objects
     //     */

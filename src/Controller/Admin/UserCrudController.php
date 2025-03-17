@@ -22,6 +22,7 @@ class UserCrudController extends AbstractCrudController
             TextField::new('username'),
             TextField::new('password')->hideOnIndex(),
             ArrayField::new('roles'),
+            TextField::new('bio'),
         ];
     }
 }

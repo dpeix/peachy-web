@@ -1,0 +1,16 @@
+{% extends 'base.html.twig' %}
+
+{% block body %}
+    <div class="profile-header">
+        <img src= {{ asset('assets/img/pp.jpg') }} alt="Profile Picture" class="profile-picture">
+        <div>
+            <h1>{{user.username}}</h1>
+            <p>{{user.bio}}</p>
+        </div>
+    </div>
+    <div class="profile-posts">
+        {% for post in posts %}
+            {{ include('includes/post.html.twig') }}
+        {% endfor %}
+    </div>
+{% endblock %}
