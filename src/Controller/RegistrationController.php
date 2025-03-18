@@ -33,7 +33,14 @@ class RegistrationController extends AbstractController
                         'registrationForm' => $form->createView(),
                     ]);
                 }
-                
+
+                // Hash the password and set it for the user
+                $hashedPassword = $passwordHasher->hashPassword($user, $form->get('plainPassword')->getData());
+                $user->setPassword($hashedPassword);
+
+                // Set the created_at field
+                $user->setCreatedAt(new \DateTimeImmutable());
+
                 $user->setState(true);
 
                 $entityManager->persist($user);

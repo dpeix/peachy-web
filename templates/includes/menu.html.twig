@@ -4,10 +4,12 @@
         <h2>Home</h2>
     </div>
 
+    {% if app.user %}
     <div class="sidebarOption" onclick="window.location.href='{{ path('app_profile') }}';" style="cursor:pointer;">
-        <span class="material-icons"> perm_identity </span>
-        <h2>Profile</h2>
+        <img src="{{ asset('assets/img/pp.jpg') }}" alt="Profile Picture" class="profile-picture" style="width: 30px; height: 30px; border-radius: 50%; margin-right: 10px;">
+        <h2>{{ app.user.username }}</h2>
     </div>
+    {% endif %}
 
     {#
     <div class="sidebarOption">

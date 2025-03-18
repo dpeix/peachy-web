@@ -1,6 +1,11 @@
 <div class="post">
     <div class="post-header">
-        <h3><strong>{{ post.user.username }}</strong></h3>
+        <div class="user-info" style="cursor:pointer;">
+            <img src="{{ asset('assets/img/pp.jpg') }}" alt="{{ post.user.username }}" class="user-image" onclick="window.location.href='{{ path('app_user_profile', {'username': post.user.username}) }}'">
+            <h3>
+                <strong onclick="window.location.href='{{ path('app_user_profile', {'username': post.user.username}) }}'">{{ post.user.username }}</strong>
+            </h3>
+        </div>
         <span class="post-date">{{ post.createdAt|date('d M Y', "Europe/Paris") }}</span>
     </div>
     <p>{{ post.body }}</p>
