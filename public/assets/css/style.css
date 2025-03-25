@@ -298,3 +298,10 @@ body {
     border-radius: 50%;
     margin-right: 10px;
 }
+
+.username {
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    max-width: 150px; /* Adjust the width as needed */
+}

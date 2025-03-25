@@ -4,8 +4,11 @@ namespace App\Entity;
 
 use App\Repository\PostRepository;
 use Doctrine\ORM\Mapping as ORM;
+use ApiPlatform\Metadata\ApiResource;
+use Doctrine\Common\Collections\ArrayCollection;
 
 #[ORM\Entity(repositoryClass: PostRepository::class)]
+#[ApiResource]
 class Post
 {
     #[ORM\Id]
