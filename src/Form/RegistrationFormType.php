@@ -28,6 +28,10 @@ class RegistrationFormType extends AbstractType
                         'minMessage' => 'Your username must be at least {{ limit }} characters long.',
                         'max' => 50,
                     ]),
+                    new Assert\Regex([
+                        'pattern' => '/^[a-zA-Z0-9_-]+$/',
+                        'message' => 'Your username can only contain letters, numbers, dashes (-), and underscores (_).',
+                    ]),
                 ],
             ])
             ->add('email', EmailType::class, [
