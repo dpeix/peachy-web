@@ -7,6 +7,7 @@
 /public/bundles/
 /var/
 /vendor/
+/frankenphp/Caddyfile
 ###< symfony/framework-bundle ###
 
 ###> phpunit/phpunit ###
@@ -26,4 +27,4 @@
 ###> lexik/jwt-authentication-bundle ###
 /config/jwt/*.pem
 ###< lexik/jwt-authentication-bundle ###
-/frankenphp/Caddyfile
+.vscode/settings.json
