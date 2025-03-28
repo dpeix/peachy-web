@@ -80,4 +80,9 @@ class Post
 
         return $this;
     }
+
+    public function getUsername(): ?string
+    {
+        return $this->user ? $this->user->getUsername() : null;
+    }
 }
