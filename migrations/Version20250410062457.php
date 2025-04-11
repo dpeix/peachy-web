@@ -20,7 +20,7 @@ final class Version20250410062457 extends AbstractMigration
     public function up(Schema $schema): void
     {
         // this up() migration is auto-generated, please modify it to your needs
-        $this->addSql('ALTER TABLE conv DROP FOREIGN KEY FK_94499CC1DA67974');
+        //$this->addSql('ALTER TABLE conv DROP FOREIGN KEY FK_94499CC1DA67974');
         $this->addSql('ALTER TABLE conv DROP FOREIGN KEY FK_94499CC537A1329');
         $this->addSql('DROP INDEX IDX_94499CC1DA67974 ON conv');
         $this->addSql('DROP INDEX IDX_94499CC537A1329 ON conv');
