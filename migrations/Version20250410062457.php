@@ -25,7 +25,7 @@ final class Version20250410062457 extends AbstractMigration
         //$this->addSql('DROP INDEX IDX_94499CC1DA67974 ON conv');
         //$this->addSql('DROP INDEX IDX_94499CC537A1329 ON conv');
         //$this->addSql('ALTER TABLE conv DROP conv_user_id, DROP message_id');
-        /*$this->addSql('ALTER TABLE conv_user ADD users_id INT DEFAULT NULL, ADD convs_id INT DEFAULT NULL');
+        //$this->addSql('ALTER TABLE conv_user ADD users_id INT DEFAULT NULL, ADD convs_id INT DEFAULT NULL');
         $this->addSql('ALTER TABLE conv_user ADD CONSTRAINT FK_9A4A93F367B3B43D FOREIGN KEY (users_id) REFERENCES user (id)');
         $this->addSql('ALTER TABLE conv_user ADD CONSTRAINT FK_9A4A93F3E25E2C28 FOREIGN KEY (convs_id) REFERENCES conv (id)');
         $this->addSql('CREATE INDEX IDX_9A4A93F367B3B43D ON conv_user (users_id)');
@@ -35,7 +35,7 @@ final class Version20250410062457 extends AbstractMigration
         $this->addSql('CREATE INDEX IDX_B6BD307FE25E2C28 ON message (convs_id)');
         $this->addSql('ALTER TABLE user DROP FOREIGN KEY FK_8D93D6491DA67974');
         $this->addSql('DROP INDEX IDX_8D93D6491DA67974 ON user');
-        $this->addSql('ALTER TABLE user DROP conv_user_id');*/
+        $this->addSql('ALTER TABLE user DROP conv_user_id');
     }
 
     public function down(Schema $schema): void
