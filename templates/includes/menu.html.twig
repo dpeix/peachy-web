@@ -11,6 +11,11 @@
     </div>
     {% endif %}
 
+    <div class="sidebarOption" onclick="window.location.href='{{ path('messaging_index') }}';">
+        <span class="material-icons"> mail_outline </span>
+        <h2>Messages</h2>
+    </div>
+
     {#
     <div class="sidebarOption">
         <span class="material-icons"> search </span>
@@ -22,10 +27,7 @@
         <h2>Notifications</h2>
     </div>
 
-    <div class="sidebarOption" onclick="window.location.href='{{ path('app_login') }}';">
-        <span class="material-icons"> mail_outline </span>
-        <h2>Messages</h2>
-    </div>
+    
 
     <div class="sidebarOption">
         <span class="material-icons"> bookmark_border </span>

@@ -56,9 +56,16 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
     #[ORM\OneToMany(targetEntity: Post::class, mappedBy: 'user')]
     private Collection $posts;
 
+    /**
+     * @var Collection<int, ConvUser>
+     */
+    #[ORM\OneToMany(targetEntity: ConvUser::class, mappedBy: 'users')]
+    private Collection $convUsers;
+
     public function __construct()
     {
         $this->posts = new ArrayCollection();
+        $this->convUsers = new ArrayCollection();
     }
 
     public function getId(): ?int
@@ -220,6 +227,36 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
             // set the owning side to null (unless already changed)
             if ($post->getUser() === $this) {
                 $post->setUser(null);
+            }
+        }
+
+        return $this;
+    }
+
+    /**
+     * @return Collection<int, ConvUser>
+     */
+    public function getConvUsers(): Collection
+    {
+        return $this->convUsers;
+    }
+
+    public function addConvUser(ConvUser $convUser): static
+    {
+        if (!$this->convUsers->contains($convUser)) {
+            $this->convUsers->add($convUser);
+            $convUser->setUsers($this);
+        }
+
+        return $this;
+    }
+
+    public function removeConvUser(ConvUser $convUser): static
+    {
+        if ($this->convUsers->removeElement($convUser)) {
+            // set the owning side to null (unless already changed)
+            if ($convUser->getUsers() === $this) {
+                $convUser->setUsers(null);
             }
         }
 

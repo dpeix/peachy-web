@@ -1,0 +1,27 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Conversations de {{ app.user.username }}{% endblock %}
+
+{% set page_title = 'Conversations' %}
+
+{% block body %}
+<div class="conversation-container">
+    <h2 class="conversation-title">Messages dans la conversation #{{ conv.id }}</h2>
+    <div class="message-list">
+        {% for message in messages %}
+            <div class="message-item {% if message.author == app.user.username %}message-own{% else %}message-other{% endif %}">
+                <strong class="message-author">{{ message.author }}</strong>
+                <p class="message-text">{{ message.body }}</p>
+                <p class="message-timestamp">{{ message.datePost|date('d/m/Y H:i', "Europe/Paris") }}</p>
+            </div>
+        {% else %}
+            <p class="no-messages">Aucun message dans cette conversation.</p>
+        {% endfor %}
+    </div>
+
+    <form method="post" action="{{ path('send_message', { id: conv.id }) }}" class="message-form">
+        <textarea name="text" placeholder="Écrivez un message..." class="message-input"></textarea>
+        <button type="submit" class="message-submit">Envoyer</button>
+    </form>
+</div>
+{% endblock %}
