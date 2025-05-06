@@ -52,9 +52,10 @@ security:
         - { path: ^/admin, roles: ROLE_ADMIN }
         # - { path: ^/profile, roles: ROLE_USER }
         - { path: ^/$, roles: PUBLIC_ACCESS } # Allows accessing the Swagger UI
-        - { path: ^/docs, roles: PUBLIC_ACCESS } # Allows accessing API documentations and Swagger UI docs
+        - { path: ^/api/docs, roles: PUBLIC_ACCESS } # Allows accessing API documentations and Swagger UI docs
         - { path: ^/auth, roles: PUBLIC_ACCESS }
         #- { path: ^/, roles: IS_AUTHENTICATED_FULLY }
+        - { path: ^/api, roles: ROLE_USER }
 
 when@test:
     security:

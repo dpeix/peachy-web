@@ -39,11 +39,21 @@ class MessagingController extends AbstractController
             throw $this->createNotFoundException('Conversation not found');
         }
 
-        $messages = $conv->getMessages(); // Assuming getMessages() fetches associated messages
+        $messages = $conv->getMessages();
+
+        // Fetch usernames of all users in the conversation
+        $usernames = [];
+        foreach ($conv->getConvUsers() as $convUser) {
+            $user = $convUser->getUsers();
+            if ($user) {
+                $usernames[] = $user->getUsername();
+            }
+        }
 
         return $this->render('messaging/conv.html.twig', [
             'conv' => $conv,
             'messages' => $messages,
+            'usernames' => $usernames,
         ]);
     }
 

@@ -19,7 +19,12 @@
             <li class="conversation-item">
                 <a href="{{ path('messaging_conv', { id: conv.id }) }}" class="conversation-link">
                     <div class="conversation-info">
-                        <span class="conversation-id">#{{ conv.id }}</span>
+                        <span class="conversation-users">
+                            Participants : 
+                            {% for convUser in conv.convUsers %}
+                                {{ convUser.users.username }}{% if not loop.last %}, {% endif %}
+                            {% endfor %}
+                        </span>
                         <span class="conversation-date">
                             Dernier message : {{ conv.dateLastMessage|date('d/m/Y H:i', "Europe/Paris") }}
                         </span>

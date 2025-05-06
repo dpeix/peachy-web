@@ -6,7 +6,7 @@
 
 {% block body %}
 <div class="conversation-container">
-    <h2 class="conversation-title">Messages dans la conversation #{{ conv.id }}</h2>
+    {#<h2 class="conversation-title">Messages dans la conversation #{{ conv.id }}</h2>#}
     <div class="message-list">
         {% for message in messages %}
             <div class="message-item {% if message.author == app.user.username %}message-own{% else %}message-other{% endif %}">
